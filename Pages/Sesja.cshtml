@@ -1,0 +1,15 @@
+﻿@page
+@model SesjaModel
+@{
+    ViewData["Title"] = "W sesji";
+}
+@{
+
+    <p><b>Ostatnio wyszukiwane:</b></p>
+    if (Model.FizzBuzzResult != null)
+    {
+        <p><b>@Html.DisplayNameFor(model => Model.FizzBuzzResult.Number):</b> @Model.FizzBuzzResult.Number </p>
+        <p><b>@Html.DisplayNameFor(model => Model.FizzBuzzResult.Wynik):</b> @Model.FizzBuzzResult.Wynik </p>
+        <p><b>@Html.DisplayNameFor(model => Model.FizzBuzzResult.Czas):</b> @Model.FizzBuzzResult.Czas </p>
+    }
+}

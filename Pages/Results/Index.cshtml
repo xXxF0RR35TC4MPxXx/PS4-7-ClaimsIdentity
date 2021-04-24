@@ -1,0 +1,58 @@
+﻿@page
+@model PS4_7_ClaimsIdentity.Results.IndexModel
+
+@{
+    ViewData["Title"] = "FB Database";
+}
+
+<h1>Wpisy w bazie danych</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FizzBuzz[0].Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FizzBuzz[0].Wynik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FizzBuzz[0].Czas)
+            </th>
+            <th>
+               Owner
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.FizzBuzz) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wynik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Czas)
+            </td>
+            <td>
+                <p>
+                    @Model.UserName(item.IdOwn)
+                </p>
+            </td>
+            <!-- jeżeli ID obecnego usera == ID usera, który dodał ten wpis-->
+            <td>
+                <p>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                    @if (item.IdOwn == User.Identity.Name)
+                    {
+                        <text>| </text><a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> ;
+                        <text>| </text><a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>;
+                    }
+                </p>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
